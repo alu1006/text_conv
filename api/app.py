@@ -6,7 +6,7 @@ from io import BytesIO
 from flask import Flask, request, send_file, render_template
 import opencc
 import docx2txt
-
+from io import BytesIO, StringIO
 app = Flask(__name__)
 
 @app.route('/')
@@ -27,8 +27,12 @@ def convert():
 
     filename = os.path.splitext(file.filename)[0] + '_convert.txt'
 
-    with open(filename, 'w', encoding='utf-8') as f:
-        f.write(text)
+    text_buffer = StringIO()
+    text_buffer.write(text)
+    text_buffer.seek(0)
+    # Convert StringIO to BytesIO
+    bytes_buffer = BytesIO(text_buffer.getvalue().encode('utf-8'))
+
 
     if request.form.get('multiple'):
         zip_filename = f'{date.today().strftime("%Y%m%d")}_convert.zip'
@@ -43,7 +47,7 @@ def convert():
         return send_file(zip_buffer, attachment_filename=zip_filename, as_attachment=True)
 
     else:
-        return send_file(filename, as_attachment=True)
+        return send_file(bytes_buffer, download_name=filename, as_attachment=True,mimetype='text/plain')
 
     return render_template('index.html')
 
