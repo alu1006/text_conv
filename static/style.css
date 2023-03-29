@@ -1,0 +1,57 @@
+body {
+    background-color: #f5f5f5;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 75%;
+    /* 將表單寬度設為頁面的 3/4 */
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.form-group {
+    position: relative;
+}
+
+.form-control-file {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 5px;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+}
+
+.custom-file-upload:hover {
+    background-color: #f8f9fa;
+}
+
+.file-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.file-list li {
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    padding: 5px;
+    margin-bottom: 5px;
+}
